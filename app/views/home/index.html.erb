@@ -1,2 +1,27 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<%= form_tag root_path, :method => 'POST' do %>
+	<%= text_field_tag 'id', nil, placeholder: 'Enter company ticket symbol', size: 50 %>
+	<%= submit_tag 'Search Stock' %>
+<% end %>
+
+<br/><br/>
+
+<% if @stock %>
+	<STRONG>Company name: </STRONG> <%= @stock.name %> - <%= @stock.symbol %> <br/>
+	<STRONG>Current Ask:</STRONG> <%= @stock.l %> <br/>
+	<STRONG>Earnings per share </STRONG> <%= @stock.eps %> <br/>
+	<STRONG>Price/Earning Ratio </STRONG> <%= @stock.pe %> <br/>
+	<STRONG>Market cap </STRONG> <%= @stock.mc %> <br/>
+	<STRONG>Open </STRONG> <%= @stock.op %> <br/>
+	<STRONG>Day's range </STRONG> <%= @stock.lo %> - <%= @stock.hi %>  <br/>
+	<STRONG>Year's high</STRONG> <%= @stock.hi52 %> <br/>
+	<STRONG>Year's low</STRONG> <%= @stock.lo52 %> <br/>
+	<STRONG>Summary: </STRONG> <%= @stock.summary %> <br/>
+	
+<% elsif @nothing %>
+	<%= @nothing %>
+<% elsif @errorl %>
+	<%= @errorl %>	
+<% end %>
+
+
+
